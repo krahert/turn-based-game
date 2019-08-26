@@ -1,16 +1,21 @@
+const { generateStats, canAttack, canDefend } = require('../utils');
+// const { hasCriticalStrike, hasResilience } = require('../skills');
 
-
-const canAttack = (unitState, targetState) => ({
-  attack: (unitState, targetState) => {}
-});
-
-const canDefend = (unitState, targetState) => ({
-  defend: (unitState, targetState) => {}
-});
-
-const Player = name => {
+const player = name => {
   const state = {
-    name,
-
+    name: name || 'Champion',
+    usesSkills: true,
+    canUseResilience: true,
+    ...generateStats('player')
   }
+
+  return Object.assign(
+    {},
+    state,
+    canAttack(state),
+    canDefend(state));
+    // hasCriticalStrike(canAttack(state)),
+    // hasResilience(canDefend(state)));
 }
+
+module.exports = player;
