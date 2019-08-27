@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "jest --watch --verbose"
   },
   "author": "Eduard Nedelcescu",
   "license": "ISC",
   "dependencies": {
-    "colors": "^1.3.3",
-    "nodemon": "^1.19.1"
+    "colors": "^1.3.3"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
