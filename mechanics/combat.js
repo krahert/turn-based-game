@@ -11,6 +11,7 @@ const unitColor = unitName => {
 const canAttack = (unitState) => ({
   attack: (targetState) => {
     const attackMissed = Math.floor(Math.random() * 100) < targetState.luck;
+
     if (!attackMissed) {
       targetState.defend(unitState);
     } else {
@@ -24,21 +25,27 @@ const canDefend = (unitState) => ({
   defend: (targetState, skill) => {
     if (!skill) {
       const damageDone = targetState.strength - unitState.defence;
+
       if (damageDone > 0) {
         unitState.health = unitState.health - damageDone;
         console.log(`[${unitColor(unitState.name)}] has taken ${damageDone} damage. [${unitColor(unitState.name)}: ${unitState.health} hp]`);
+
         if (unitState.health <= 0) {
           targetState.conclusion(unitState);
         } else {
           return;
         }
       }
+
     } else if (skill === 'resilience') {
       const damageDone = Math.floor((unitState.strength - targetState.defence) / 2);
+
       if (damageDone > 0) {
         targetState.health = targetState.health - damageDone;
+
         console.log('[Resilience]'.yellow);
         console.log(`[${unitColor(unitState.name)}] has taken ${damageDone} damage. [${unitColor(unitState.name)}: ${unitState.health} hp]`);
+
         if (targetState.health <= 0) {
           targetState.conclusion(unitState);
         } else {

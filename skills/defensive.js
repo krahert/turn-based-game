@@ -7,9 +7,11 @@ const hasResilience = (unitState) => ({
         unitState.canUseResilience = true;
       }
       unitState.defend(targetState);
+
     } else if (initialChance < 20 && unitState.canUseResilience === false) {
         unitState.canUseResilience = true;
         unitState.defend(targetState);
+
     } else if (initialChance < 20 && unitState.canUseResilience) {
         unitState.canUseResilience = false;
         unitState.defend(targetState, 'resilience');

@@ -1,4 +1,4 @@
-const { generateStats, canAttack, canDefend, hasEndedBattle } = require('../utils');
+const { generateStats, canAttack, canDefend, hasEndedBattle } = require('../mechanics');
 
 const villain = () => {
   const state = {

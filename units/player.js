@@ -1,4 +1,4 @@
-const { generateStats, canAttack, canDefend, hasEndedBattle } = require('../utils/');
+const { generateStats, canAttack, canDefend, hasEndedBattle } = require('../mechanics');
 const { hasCriticalStrike, hasResilience } = require('../skills/');
 
 const player = () => {
@@ -10,8 +10,6 @@ const player = () => {
   }
 
   state.conclusion = hasEndedBattle(state).conclusion;
-
-  //! SKILLS reutilizabile. same obj for mobs and player
 
   const enhancedState = Object.assign(
     {},
@@ -26,7 +24,7 @@ const player = () => {
       {},
       enhancedState,
       { attack: hasCriticalStrike(enhancedState).criticalStrike },
-      { defend: hasResilience(enhancedState).resilience }
+      { defend: hasResilience(enhancedState).resilience, canUseResilience: true }
     );
   }
 }

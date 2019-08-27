@@ -1,5 +1,5 @@
 // const http = require('http');
-const { initiateCombat } = require('./utils/');
+const { initiateCombat } = require('./mechanics');
 const Player = require('./units/player');
 const Villain = require('./units/villain');
 const title = require('./asciiArt/headers').title;

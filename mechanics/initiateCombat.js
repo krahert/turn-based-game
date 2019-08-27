@@ -2,6 +2,7 @@ const colors = require('colors');
 
 const initiateCombat = (player, villain) => {
   let maxNumberOfTurns = 20;
+
   if (player.speed > villain.speed
     || (player.speed === villain.speed && player.luck > villain.luck)) {
 
