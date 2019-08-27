@@ -1,16 +1,21 @@
 // const http = require('http');
 
+//! const { initiativeCalculator } = require('./utils/');
+
 const Player = require('./units/player');
 const Villain = require('./units/villain');
 
 // const server = http.createServer((req, res) => {
 // });
-const player = Player('Champion');
+const player = Player();
 const villain = Villain();
 
 // console.log(player);
 // console.log(villain);
+//! initiativeCalculator(player, villain);
 
+player.attack(villain);
+villain.attack(player);
 player.attack(villain);
 villain.attack(player);
 player.attack(villain);

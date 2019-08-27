@@ -1,21 +1,35 @@
-const { generateStats, canAttack, canDefend } = require('../utils');
-// const { hasCriticalStrike, hasResilience } = require('../skills');
+const { generateStats, canAttack, canDefend, hasEndedBattle } = require('../utils/');
+const { hasCriticalStrike, hasResilience } = require('../skills/');
 
-const player = name => {
+const player = () => {
   const state = {
-    name: name || 'Champion',
+    name: 'Champion',
     usesSkills: true,
     canUseResilience: true,
     ...generateStats('player')
   }
 
-  return Object.assign(
+  //! SKILLS reutilizabile. same obj for mobs and player
+  // const skills = {
+  //   attack: hasCriticalStrike(canAttack(state))
+  // };
+
+  const enhancedState = Object.assign(
     {},
     state,
     canAttack(state),
     canDefend(state));
-    // hasCriticalStrike(canAttack(state)),
-    // hasResilience(canDefend(state)));
+
+  if (!state.usesSkills) {
+    return Object.assign({}, enhancedState, hasEndedBattle(enhancedState));
+  } else {
+    return Object.assign(
+      {},
+      enhancedState,
+      { attack: hasCriticalStrike(enhancedState).criticalStrike },
+      { defend: hasResilience(enhancedState).resilience }
+    );
+  }
 }
 
 module.exports = player;

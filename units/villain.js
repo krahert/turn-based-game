@@ -1,4 +1,4 @@
-const { generateStats, canAttack, canDefend } = require('../utils');
+const { generateStats, canAttack, canDefend, hasEndedBattle } = require('../utils');
 
 const villain = () => {
   const state = {
@@ -7,7 +7,12 @@ const villain = () => {
     ...generateStats('villain')
   }
 
-  return Object.assign({}, state, canAttack(state), canDefend(state));
+  return Object.assign(
+    {},
+    state,
+    canAttack(state),
+    canDefend(state),
+    hasEndedBattle(state));
 }
 
 module.exports = villain;

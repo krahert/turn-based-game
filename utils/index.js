@@ -1,4 +1,5 @@
 module.exports = {
   ...require('./generateStats'),
-  ...require('./combat')
+  ...require('./combat'),
+  ...require('./initiativeCalculator')
 };
