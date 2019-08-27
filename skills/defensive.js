@@ -1,6 +1,5 @@
 const hasResilience = (unitState) => ({
   resilience: (targetState) => {
-    console.log(unitState.canUseResilience);
     const initialChance = Math.floor(Math.random() * 100);
 
     if (initialChance >= 20) {

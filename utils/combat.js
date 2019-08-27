@@ -16,23 +16,20 @@ const canDefend = (unitState) => ({
   defend: (targetState, skill) => {
     if (!skill) {
       const damageDone = targetState.strength - unitState.defence;
-      //! DE FACUT REUTILIZABIL
       if (damageDone > 0) {
         unitState.health = unitState.health - damageDone;
         console.log(`[${unitState.name}] has taken ${damageDone} damage. [${unitState.name}: ${unitState.health} hp]`);
         if (unitState.health <= 0) {
           targetState.conclusion(unitState);
-      //! **********************
         } else {
           return;
         }
       }
-      //! de scris ca helper function
     } else if (skill === 'resilience') {
       const damageDone = Math.floor((unitState.strength - targetState.defence) / 2);
       if (damageDone > 0) {
         targetState.health = targetState.health - damageDone;
-        console.log(`[${unitState.name}] has taken ${damageDone} damage [[[[Resilience]]]]. [${unitState.name}: ${unitState.health} hp]`);
+        console.log(`[${unitState.name}] has taken ${damageDone} damage [Resilience]. [${unitState.name}: ${unitState.health} hp]`);
         if (targetState.health <= 0) {
           targetState.conclusion(unitState);
           console.log(`${unitState.name} has been slain.`);
@@ -42,6 +39,14 @@ const canDefend = (unitState) => ({
       }
     }
 
+  }
+});
+
+const hasEndedBattle = (unitState) => ({
+  conclusion: (targetState) => {
+    console.log(`The ${unitState.name} has vanquished the ${targetState.name}`);
+    console.log(unitState.name === 'Champion' ? victory.blue : defeat.red);
+    process.exit()
   }
 });
 
@@ -69,13 +74,5 @@ const defeat = `
 888  .d88P Y8b.     888    Y8b.     888  888 Y88b.   "
 8888888P"   "Y8888  888     "Y8888  "Y888888  "Y888 888
 `;
-
-const hasEndedBattle = (unitState) => ({
-  conclusion: (targetState) => {
-    console.log(`The ${unitState.name} has vanquished the ${targetState.name}`);
-    console.log(unitState.name === 'Champion' ? victory.blue : defeat.red);
-    process.exit()
-  }
-});
 
 module.exports = { canAttack, canDefend, hasEndedBattle };

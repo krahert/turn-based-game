@@ -1,6 +1,5 @@
 const player = {
-  // health: [70, 100],
-  health: [400, 500],
+  health: [70, 100],
   strength: [70, 80],
   defence: [45, 55],
   speed: [40, 50],
@@ -8,8 +7,7 @@ const player = {
 };
 
 const villain = {
-  // health: [60, 90],
-  health: [400, 500],
+  health: [60, 90],
   strength: [60, 90],
   defence: [40, 60],
   speed: [40, 60],
