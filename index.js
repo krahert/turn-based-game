@@ -22,6 +22,22 @@ player.attack(villain);
 villain.attack(player);
 player.attack(villain);
 villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
+player.attack(villain);
+villain.attack(player);
 
 // const PORT = process.env.PORT || 5000;
 

@@ -7,6 +7,8 @@ const villain = () => {
     ...generateStats('villain')
   }
 
+  state.conclusion = hasEndedBattle(state).conclusion;
+
   return Object.assign(
     {},
     state,

@@ -1,11 +1,19 @@
 const hasResilience = (unitState) => ({
   resilience: (targetState) => {
+    console.log(unitState.canUseResilience);
     const initialChance = Math.floor(Math.random() * 100);
+
     if (initialChance >= 20) {
-      unitState.canUseResilience = true;
+      if (unitState.canUseResilience === false) {
+        unitState.canUseResilience = true;
+      }
       unitState.defend(targetState);
+    } else if (initialChance < 20 && unitState.canUseResilience === false) {
+        unitState.canUseResilience = true;
+        unitState.defend(targetState);
     } else if (initialChance < 20 && unitState.canUseResilience) {
-      unitState.defend(targetState, 'resilience');
+        unitState.canUseResilience = false;
+        unitState.defend(targetState, 'resilience');
     }
   }
 });

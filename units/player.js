@@ -9,10 +9,9 @@ const player = () => {
     ...generateStats('player')
   }
 
+  state.conclusion = hasEndedBattle(state).conclusion;
+
   //! SKILLS reutilizabile. same obj for mobs and player
-  // const skills = {
-  //   attack: hasCriticalStrike(canAttack(state))
-  // };
 
   const enhancedState = Object.assign(
     {},
@@ -21,7 +20,7 @@ const player = () => {
     canDefend(state));
 
   if (!state.usesSkills) {
-    return Object.assign({}, enhancedState, hasEndedBattle(enhancedState));
+    return enhancedState;
   } else {
     return Object.assign(
       {},
