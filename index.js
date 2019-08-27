@@ -1,7 +1,5 @@
 // const http = require('http');
-
-//! const { initiativeCalculator } = require('./utils/');
-
+const { initiateCombat } = require('./utils/');
 const Player = require('./units/player');
 const Villain = require('./units/villain');
 
@@ -10,34 +8,7 @@ const Villain = require('./units/villain');
 const player = Player();
 const villain = Villain();
 
-// console.log(player);
-// console.log(villain);
-//! initiativeCalculator(player, villain);
-
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
-player.attack(villain);
-villain.attack(player);
+initiateCombat(player, villain);
 
 // const PORT = process.env.PORT || 5000;
 

@@ -1,12 +1,18 @@
 const colors = require('colors');
 
+const unitColor = unitName => {
+  return unitName === 'Champion'
+    ? colors.blue(unitName)
+    : colors.red(unitName);
+};
+
 const canAttack = (unitState) => ({
   attack: (targetState) => {
     const attackMissed = Math.floor(Math.random() * 100) < targetState.luck;
     if (!attackMissed) {
       targetState.defend(unitState);
     } else {
-      console.log(`[${unitState.name}]'s attack missed.`.bgWhite.gray);
+      console.log(`[${unitState.name}]'s attack missed.`.gray);
       return;
     }
   }
@@ -18,7 +24,7 @@ const canDefend = (unitState) => ({
       const damageDone = targetState.strength - unitState.defence;
       if (damageDone > 0) {
         unitState.health = unitState.health - damageDone;
-        console.log(`[${unitState.name}] has taken ${damageDone} damage. [${unitState.name}: ${unitState.health} hp]`);
+        console.log(`[${unitColor(unitState.name)}] has taken ${damageDone} damage. [${unitColor(unitState.name)}: ${unitState.health} hp]`);
         if (unitState.health <= 0) {
           targetState.conclusion(unitState);
         } else {
@@ -29,10 +35,10 @@ const canDefend = (unitState) => ({
       const damageDone = Math.floor((unitState.strength - targetState.defence) / 2);
       if (damageDone > 0) {
         targetState.health = targetState.health - damageDone;
-        console.log(`[${unitState.name}] has taken ${damageDone} damage [Resilience]. [${unitState.name}: ${unitState.health} hp]`);
+        console.log('[Resilience]'.yellow);
+        console.log(`[${unitColor(unitState.name)}] has taken ${damageDone} damage. [${unitColor(unitState.name)}: ${unitState.health} hp]`);
         if (targetState.health <= 0) {
           targetState.conclusion(unitState);
-          console.log(`${unitState.name} has been slain.`);
         } else {
           return;
         }
@@ -44,7 +50,10 @@ const canDefend = (unitState) => ({
 
 const hasEndedBattle = (unitState) => ({
   conclusion: (targetState) => {
-    console.log(`The ${unitState.name} has vanquished the ${targetState.name}`);
+    unitState.name === 'Champion'
+    ? console.log(`The ${unitState.name} has vanquished the ${targetState.name}`.blue)
+    : console.log(`The ${unitState.name} has vanquished the ${targetState.name}`.red);
+
     console.log(unitState.name === 'Champion' ? victory.blue : defeat.red);
     process.exit()
   }
